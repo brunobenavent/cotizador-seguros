@@ -1,5 +1,6 @@
 import Formulario from "./Formulario"
 
+
 const AppSeguro = () => {
   return (
     <>
