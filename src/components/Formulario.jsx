@@ -12,6 +12,7 @@ const Formulario = () => {
             setError('Todos los campos son obligatorios')
             return
         }
+        setError('')
 
 
 
