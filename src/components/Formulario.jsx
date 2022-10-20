@@ -1,17 +1,40 @@
 import { Fragment } from "react"
 import { MARCAS, YEARS, PLANES } from "../constants"
+import useCotizador from "../hooks/useCotizador"
+import Error from "./Error"
 
 const Formulario = () => {
-  return (
+    const {handleChangeDatos, datos, error, setError} = useCotizador()
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        if(Object.values(datos).includes("")){
+            setError('Todos los campos son obligatorios')
+            return
+        }
+
+
+
+
+
+    }
+    return (
     <>
-        <form action="">
+        {error && <Error/>}
+        <form
+            onSubmit={handleSubmit}
+        >
             <div className="my-5">
                 <label htmlFor="marca" className="block mb-3 font-bold text-gray-400 uppercase ">
                     Marca
                 </label>
                 <select
                     name="marca"
+                    value={datos.marca}
                     className="w-full p-3 bg-white border rounded-lg border-gray-200"
+                    onChange={e =>{
+                        handleChangeDatos(e)
+                    }}
                     >
                     <option value="" >-- Selecciona Marca --</option>
                         {MARCAS.map(marca => (
@@ -30,7 +53,11 @@ const Formulario = () => {
                 </label>
                 <select
                     name="year"
+                    value={datos.year}
                     className="w-full p-3 bg-white border rounded-lg border-gray-200"
+                    onChange={e =>{
+                        handleChangeDatos(e)
+                    }}
                     >
                     <option value="" >-- Selecciona Año --</option>
                         {YEARS.map(year => (
@@ -57,6 +84,9 @@ const Formulario = () => {
                                 type="radio"
                                 name= 'plan'
                                 value = {plan.id}
+                                onChange={e =>{
+                                    handleChangeDatos(e)
+                                }}
 
                             />
                         </Fragment>
