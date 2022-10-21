@@ -13,13 +13,8 @@ const Formulario = () => {
             return
         }
         setError('')
-        const cotizacion = cotizarSeguro()
-        
-
-
-
-
-
+        cotizarSeguro()
+    
     }
     return (
     <>

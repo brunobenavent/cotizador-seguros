@@ -12,6 +12,8 @@ const CotizadorProvider = ({children}) => {
         year: "",
         plan: ""
     })
+    const [cargando, setCargando] = useState(false)
+
     const handleChangeDatos = e =>{
         setDatos({
             ...datos,
@@ -47,8 +49,14 @@ const CotizadorProvider = ({children}) => {
             style:'currency',
             currency: 'EUR'
         } )
- 
-        setResultado(cantidad)
+        
+        setCargando(true)
+
+        setTimeout(() => {
+            setResultado(cantidad)
+            setCargando(false)
+        }, 1200);
+        
     }
 
 
@@ -60,7 +68,8 @@ const CotizadorProvider = ({children}) => {
                 error,
                 setError,
                 cotizarSeguro, 
-                setResultado
+                resultado,
+                cargando
             }}
         >
             {children}
